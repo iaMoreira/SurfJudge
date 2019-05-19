@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/item_adapter"
+    android:elevation="2dp"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgCadCarro"
+            android:layout_width="match_parent"
+            android:layout_height="137dp"
+            android:alpha="0.9"
+            android:src="@mipmap/sufer3"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:outlineProvider="background"
+            android:foreground="?android:attr/selectableItemBackground" />
+
+        <TextView
+            android:id="@+id/imgAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_gravity="bottom"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:text="Olivença Champion"/>
+    </android.support.design.widget.CoordinatorLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:lineSpacingExtra="4dp"
+        android:textSize="16sp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="5dp"
+        android:text="Located two hours south of Sydney in the Southern Highlands of New South Wales, ..."
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/black"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SHARE"
+            android:padding="16dp"
+            android:textStyle="bold"
+            android:foreground="?android:attr/selectableItemBackground"
+        android:textColor="@color/design_default_color_primary_dark"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LEARN MORE"
+            android:padding="16dp"
+            android:textStyle="bold"
+            android:foreground="?android:attr/selectableItemBackground"
+        android:textColor="@color/design_default_color_primary_dark"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
