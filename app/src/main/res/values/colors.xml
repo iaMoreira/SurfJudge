@@ -7,4 +7,41 @@
     <color name="white">#FFFFFF</color>
     <color name="title">#616161</color>
     <color name="black">#212121</color>
+
+    <color name="grey_100">#F5F5F5</color>
+    <color name="grey_200">#EEEEEE</color>
+    <color name="grey_300">#E0E0E0</color>
+    <color name="grey_350">#D8D8D8</color>
+    <color name="grey_400">#BDBDBD</color>
+    <color name="grey_500">#9E9E9E</color>
+
+    <color name="red">#F44336</color>
+    <color name="light">#ccc</color>
+    <color name="yellow">#FFFFEB3B</color>
+    <color name="green">#FF4CAF50</color>
+    <color name="grey">#9E9E9E</color>
+    <color name="blue">#3F51B5</color>
+
+    <array name="demo_colors">
+        <item>@color/red</item>
+        <item>#E91E63</item>
+        <item>#9C27B0</item>
+        <item>#673AB7</item>
+        <item>#3F51B5</item>
+        <item>#2196F3</item>
+        <item>#03A9F4</item>
+        <item>#00BCD4</item>
+        <item>#009688</item>
+        <item>#4CAF50</item>
+        <item>#8BC34A</item>
+        <item>#CDDC39</item>
+        <item>#FFEB3B</item>
+        <item>#FFC107</item>
+        <item>#FF9800</item>
+        <item>#FF5722</item>
+        <item>#795548</item>
+        <item>#9E9E9E</item>
+        <item>#607D8B</item>
+        <item>#FFFFFF</item>
+    </array>
 </resources>
