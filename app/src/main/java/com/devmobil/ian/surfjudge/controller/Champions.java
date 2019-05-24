@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.devmobil.ian.surfjudge.database.Database;
 import com.devmobil.ian.surfjudge.model.Champion;
@@ -44,8 +45,10 @@ public class Champions {
             verifica();
             return conection.insertOrThrow("CHAMPION", null, contentValues);
         } catch (SQLException ex) {
+            Log.d("Champions", ex.toString());
             return 0;
         } catch (NullPointerException ex) {
+            Log.d("Champions", ex.toString());
             return 0;
         }
 
@@ -58,8 +61,10 @@ public class Champions {
             verifica();
             return conection.delete("CHAMPION", "ID = ?", param);
         } catch (SQLException ex) {
+            Log.d("Champions", ex.toString());
             return 0;
         } catch (NullPointerException ex) {
+            Log.d("Champions", ex.toString());
             return 0;
         }
     }
@@ -79,8 +84,10 @@ public class Champions {
             verifica();
             return conection.update("CHAMPION", contentValues, "ID = ?", param);
         } catch (SQLException ex) {
+            Log.d("Champions", ex.toString());
             return 0;
         } catch (NullPointerException ex) {
+            Log.d("Champions", ex.toString());
             return 0;
         }
     }
@@ -89,7 +96,7 @@ public class Champions {
         ArrayList<Champion> championes = new ArrayList<>();
         try {
             verifica();
-            String sql = "SELECT * FROM CHAMPION ORDER BY NOME ASC";
+            String sql = "SELECT * FROM CHAMPION ORDER BY ID ASC";
             Cursor results = conection.rawQuery(sql, null);
             if (results.getCount() > 0) {
                 results.moveToFirst();
@@ -112,8 +119,10 @@ public class Champions {
             } else
                 return championes;
         } catch (SQLException ex) {
+            Log.d("Champions", ex.toString());
             return championes;
         } catch (NullPointerException ex) {
+            Log.d("Champions", ex.toString());
             return championes;
         }
     }
@@ -140,8 +149,10 @@ public class Champions {
             } else
                 return champion;
         } catch (SQLException ex) {
+            Log.d("Champions", ex.toString());
             return champion;
         } catch (NullPointerException ex) {
+            Log.d("Champions", ex.toString());
             return champion;
         }
     }

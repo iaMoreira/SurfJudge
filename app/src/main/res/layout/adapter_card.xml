@@ -5,14 +5,17 @@
     android:background="@drawable/item_adapter"
     android:elevation="2dp"
     android:layout_margin="10dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:foreground="?android:attr/selectableItemBackground"
+    >
+
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/coord"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imgCadCarro"
+            android:id="@+id/imgCard"
             android:layout_width="match_parent"
             android:layout_height="137dp"
             android:alpha="0.9"
@@ -20,20 +23,33 @@
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:outlineProvider="background"
-            android:foreground="?android:attr/selectableItemBackground" />
+            />
 
         <TextView
-            android:id="@+id/imgAdd"
+            android:id="@+id/txtTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="30dp"
             android:layout_gravity="bottom"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:text="Olivença Champion"/>
+        <TextView
+            android:id="@+id/txtDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_gravity="bottom"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            android:text="12:30 12/12/2019"/>
     </android.support.design.widget.CoordinatorLayout>
 
     <TextView
+        android:id="@+id/txtDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"

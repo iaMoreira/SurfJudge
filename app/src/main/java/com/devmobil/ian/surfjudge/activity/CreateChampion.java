@@ -1,6 +1,7 @@
 package com.devmobil.ian.surfjudge.activity;
 
 import android.annotation.SuppressLint;
+import android.database.SQLException;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,11 +17,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.devmobil.ian.surfjudge.R;
+import com.devmobil.ian.surfjudge.controller.Champions;
 import com.devmobil.ian.surfjudge.fragment.Cad1Fragment;
 import com.devmobil.ian.surfjudge.fragment.Cad2Fragment;
 import com.devmobil.ian.surfjudge.fragment.Cad3Fragment;
+import com.devmobil.ian.surfjudge.model.Champion;
 
 import java.util.Objects;
 
@@ -29,6 +34,8 @@ public class CreateChampion extends AppCompatActivity  {
     Cad2Fragment frag2 = new Cad2Fragment();
     Cad3Fragment frag3 = new Cad3Fragment();
     Fragment active = frag1;
+    private int id = 0;
+    private Champion champion;
 
 
     @SuppressLint("RestrictedApi")
@@ -88,7 +95,35 @@ public class CreateChampion extends AppCompatActivity  {
     }
 
     private void insert() {
-        finish();
+        try {
+
+            champion = new Champion();
+            champion.setTitle(frag1.edtTitle.getText().toString());
+            champion.setDescription(frag1.edtDescription.getText().toString());
+            champion.setWaves(Integer.valueOf(frag1.edtWaves.getText().toString()));
+            champion.setCategory(frag1.spinner.getSelectedItem().toString());
+            champion.setImage(frag1.uri.toString());
+            champion.setDate_time(frag2.txtHour.getText().toString() + frag2.txtDate.getText().toString());
+            champion.setPlace(frag2.edtPlace.getText().toString());
+//            champion.set(frag3.getText().toString());
+            Champions champions = new Champions(this);
+            if (id == 0) {
+                id = (int) champions.insert(champion);
+                Log.d("ID", "" + id);
+
+            } else {
+                champion.setId(id);
+
+                id = champions.update(champion);
+            }
+            finish();
+
+        } catch (SQLException ex) {
+            AlertDialog.Builder dlg = new AlertDialog.Builder(this);
+            dlg.setTitle("Erro");
+            dlg.setMessage(ex.getMessage());
+            dlg.setNeutralButton("OK", null);
+        }
     }
 
     @Override
@@ -112,8 +147,7 @@ public class CreateChampion extends AppCompatActivity  {
     }
 
     private void alert(String aviso) {
-        Snackbar.make(Objects.requireNonNull(getCurrentFocus()), aviso, Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+        Toast.makeText(this, aviso, Toast.LENGTH_LONG);
     }
 
 }

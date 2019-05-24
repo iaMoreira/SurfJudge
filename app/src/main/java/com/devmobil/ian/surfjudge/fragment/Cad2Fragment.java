@@ -27,9 +27,9 @@ import java.util.Objects;
 public class Cad2Fragment extends Fragment implements View.OnClickListener {
 
     private DatePickerDialog.OnDateSetListener date;
-    private Calendar myCalendar;
-    private TextView txtDate;
-    private TextView txtHour;
+    public Calendar myCalendar;
+    public TextView txtDate;
+    public TextView txtHour;
     public  ImageView img;
     public EditText edtPlace;
     @Override

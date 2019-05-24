@@ -82,7 +82,7 @@ public class Surfers {
         ArrayList<Surfer> surfers = new ArrayList<>();
         try {
             verifica();
-            String sql = "SELECT * FROM SURFER ORDER BY NOME ASC";
+            String sql = "SELECT * FROM SURFER ORDER BY ID ASC";
             Cursor results = conection.rawQuery(sql, null);
             if (results.getCount() > 0) {
                 results.moveToFirst();

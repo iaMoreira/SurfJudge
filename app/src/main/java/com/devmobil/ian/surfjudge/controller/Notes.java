@@ -82,7 +82,7 @@ public class Notes {
         ArrayList<Note> notes = new ArrayList<>();
         try {
             verifica();
-            String sql = "SELECT * FROM NOTE ORDER BY NOME ASC";
+            String sql = "SELECT * FROM NOTE ORDER BY ID ASC";
             Cursor results = conection.rawQuery(sql, null);
             if (results.getCount() > 0) {
                 results.moveToFirst();

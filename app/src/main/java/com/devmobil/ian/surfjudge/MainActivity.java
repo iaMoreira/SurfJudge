@@ -12,6 +12,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -24,14 +26,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
 import com.devmobil.ian.surfjudge.activity.CreateChampion;
+import com.devmobil.ian.surfjudge.adapter.ChampionAdapter;
+import com.devmobil.ian.surfjudge.controller.Champions;
 import com.devmobil.ian.surfjudge.database.Database;
+import com.devmobil.ian.surfjudge.model.Champion;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    public static SQLiteDatabase connection;
+    public SQLiteDatabase connection;
     public Context context;
     boolean isFABOpen = false;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +62,11 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         context = getApplicationContext();
+        recyclerView = findViewById(R.id.recyclerView);
 
 
-        if (connection == null) {
-            initDatabase();
-        }
-       checkPermission();
+        initDatabase();
+        checkPermission();
     }
 
     private void checkPermission() {
@@ -142,5 +149,25 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Champions champions = new Champions(this);
+        ChampionAdapter mChampionAdapter = new ChampionAdapter(this, champions.all());
+        mChampionAdapter.setHasStableIds(true);
+//        mChampionAdapter.setOnItemClickListener(new ChampionAdapter.onItemClickListener() {
+//            @Override
+//            public void onitemclicklistener(int position) {
+//                TesteDialog dialog = new TesteDialog();
+//                dialog.setId(position);
+//                dialog.show(getFragmentManager(), "s");
+//            }
+//        });
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//            recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
+        recyclerView.setAdapter(mChampionAdapter);
+
     }
 }

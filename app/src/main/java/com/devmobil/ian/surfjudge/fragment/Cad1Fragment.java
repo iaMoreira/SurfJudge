@@ -42,7 +42,7 @@ public class Cad1Fragment extends Fragment implements View.OnClickListener {
     public EditText edtTitle;
     public EditText edtDescription;
     public EditText edtWaves;
-
+    public Spinner spinner;
     public static final int PICK_IMAGE = 1234;
     private Calendar myCalendar;
     private DatePickerDialog.OnDateSetListener date;
@@ -60,7 +60,7 @@ public class Cad1Fragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_cad1, container, false);
-        Spinner spinner = root.findViewById(R.id.spinner);
+        spinner = root.findViewById(R.id.spinner);
         String[] aux = new String[]{"Open", "Long"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(root.getContext(), android.R.layout.simple_spinner_item, aux);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

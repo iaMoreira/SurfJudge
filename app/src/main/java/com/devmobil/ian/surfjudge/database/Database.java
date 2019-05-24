@@ -38,15 +38,16 @@ public class Database extends SQLiteOpenHelper {
 
     private String createChampion() {
         String sql = "CREATE TABLE CHAMPION ( " +
-                " ID INTEGER, " +
+                " ID INTEGER , " +
                 " TITLE TEXT NOT NULL, " +
                 " DESCRIPTION TEXT NOT NULL, " +
                 " IMAGE TEXT, " +
                 " WAVES INTEGER NOT NULL, " +
                 " CATEGORY TEXT NOT NULL, " +
                 " DATE_TIME TEXT NOT NULL, " +
-                " PLACE TEXT NOT NULL " +
-                ");";
+                " PLACE TEXT NOT NULL, " +
+                " PRIMARY KEY(ID) " +
+                ")";
 
         return sql;
     }
