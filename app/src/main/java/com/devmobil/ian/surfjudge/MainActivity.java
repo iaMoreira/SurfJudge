@@ -1,13 +1,17 @@
 package com.devmobil.ian.surfjudge;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -20,9 +24,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
 import com.devmobil.ian.surfjudge.activity.CreateChampion;
+import com.devmobil.ian.surfjudge.database.Database;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    public static SQLiteDatabase connection;
+    public Context context;
+    boolean isFABOpen = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +43,6 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
             startActivity(new Intent(MainActivity.this, CreateChampion.class));
             }
         });
@@ -46,7 +53,12 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        context = getApplicationContext();
 
+
+        if (connection == null) {
+            initDatabase();
+        }
        checkPermission();
     }
 
@@ -60,6 +72,26 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    public void initDatabase() {
+        if (context == null) {
+            context = this;
+        }
+
+        try {
+            Database database = new Database(context);
+            connection = database.getWritableDatabase();
+        } catch (SQLException ex) {
+            AlertDialog.Builder dlg = new AlertDialog.Builder(context);
+            dlg.setTitle("Erro");
+            dlg.setMessage(ex.getMessage());
+            dlg.setNeutralButton("OK", null);
+        } catch (NullPointerException n){
+            if(connection != null){
+                connection.close();
+            }
+            onCreate(new Bundle());
+        }
+    }
 
     @Override
     public void onBackPressed() {
@@ -73,23 +105,17 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
