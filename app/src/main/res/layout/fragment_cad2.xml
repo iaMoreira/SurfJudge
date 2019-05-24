@@ -3,16 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.Cad2Fragment">
 
-    <?xml version="1.0" encoding="utf-8"?>
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
+    <android.support.constraint.ConstraintLayout
         android:layout_height="match_parent"
         android:background="#EEEEEE"
-        tools:context=".activity.CreateChampion">
+        android:layout_width="match_parent">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -31,10 +28,11 @@
                     android:layout_margin="16dp">
 
                     <ImageView
-                        android:id="@+id/imgCadCarro"
+                        android:id="@+id/imgCad2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:alpha="0.8"
+                        android:alpha="0.9"
+                        android:scaleType="centerCrop"
                         android:background="@mipmap/sufer2"
                         android:foreground="?android:attr/selectableItemBackground" />
 
@@ -60,12 +58,15 @@
                         android:textColor="@color/title"
                         android:textSize="20sp" />
 
-                    <EditText
+                    <TextView
+                        android:id="@+id/txtDate"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginLeft="5dp"
                         android:hint="dd/mm/yyyy"
-                        android:inputType="textCapSentences" />
+                        android:textSize="18sp"
+                        android:gravity="center_vertical"
+                         />
                 </LinearLayout>
 
                 <LinearLayout
@@ -86,12 +87,15 @@
                         android:textColor="@color/title"
                         android:textSize="20sp" />
 
-                    <EditText
+                    <TextView
+                        android:id="@+id/txtHour"
                         android:layout_width="match_parent"
                         android:layout_marginLeft="5dp"
                         android:hint="hh:mm"
+                        android:textSize="18sp"
+                        android:gravity="center_vertical"
                         android:layout_height="50dp"
-                        android:gravity="top"/>
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -112,6 +116,7 @@
                         android:textSize="20sp" />
 
                     <EditText
+                        android:id="@+id/edtPlace"
                         android:layout_width="wrap_content"
                         android:layout_height="50dp"
                         android:layout_marginLeft="5dp"

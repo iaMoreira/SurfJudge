@@ -3,16 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.Cad1Fragment">
 
-    <?xml version="1.0" encoding="utf-8"?>
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#EEEEEE"
-        tools:context=".activity.CreateChampion">
+        android:background="#EEEEEE">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -22,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:paddingBottom="20dp">
+                android:paddingBottom="60dp">
 
                 <android.support.design.widget.CoordinatorLayout
                     android:id="@+id/coord"
@@ -31,10 +28,11 @@
                     android:layout_margin="16dp">
 
                     <ImageView
-                        android:id="@+id/imgCadCarro"
+                        android:id="@+id/imgCad"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:alpha="0.5"
+                        android:alpha="0.7"
+                        android:scaleType="centerCrop"
                         android:background="@mipmap/sufer2"
                         android:foreground="?android:attr/selectableItemBackground" />
 
@@ -73,6 +71,7 @@
                         android:textSize="20sp" />
 
                     <EditText
+                        android:id="@+id/edtTitle"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginLeft="5dp"
@@ -99,15 +98,16 @@
                         android:textSize="20sp" />
 
                     <EditText
+                        android:id="@+id/edtDescription"
                         android:layout_width="match_parent"
-                        android:layout_marginLeft="5dp"
-                        android:hint="Insert descricption here"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="top"
+                        android:hint="Insert descricption here"
+                        android:inputType="text|textMultiLine"
                         android:lines="4"
                         android:maxLines="10"
-                        android:minLines="4"
-                        android:inputType="text|textMultiLine"
-                        android:gravity="top"/>
+                        android:minLines="4" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -116,6 +116,7 @@
                     android:background="@color/white"
                     android:paddingLeft="16dp"
                     android:paddingTop="2dp"
+                    android:layout_marginBottom="1dp"
                     android:paddingRight="16dp"
                     android:paddingBottom="2dp">
 
@@ -128,11 +129,12 @@
                         android:textSize="20sp" />
 
                     <EditText
+                        android:id="@+id/edtWaves"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginLeft="5dp"
                         android:hint="Insert amount of waves *"
-                        android:inputType="textCapSentences" />
+                        android:inputType="numberSigned" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -1,66 +1,108 @@
 package com.devmobil.ian.surfjudge.fragment;
 
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.devmobil.ian.surfjudge.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Cad2Fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class Cad2Fragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import java.net.URI;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.Objects;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class Cad2Fragment extends Fragment implements View.OnClickListener {
 
-
-    public Cad2Fragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Cad2Fragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Cad2Fragment newInstance(String param1, String param2) {
-        Cad2Fragment fragment = new Cad2Fragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    private DatePickerDialog.OnDateSetListener date;
+    private Calendar myCalendar;
+    private TextView txtDate;
+    private TextView txtHour;
+    public  ImageView img;
+    public EditText edtPlace;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cad2, container, false);
+        View root = inflater.inflate(R.layout.fragment_cad2, container, false);
+        txtDate = root.findViewById(R.id.txtDate);
+        txtHour = root.findViewById(R.id.txtHour);
+        edtPlace = root.findViewById(R.id.edtPlace);
+
+        txtDate.setOnClickListener(this);
+        txtHour.setOnClickListener(this);
+        myCalendar = Calendar.getInstance();
+
+        date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                String myFormat = "dd/MM/yyyy"; //In which you need put here
+                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, new Locale("pt", "BR"));
+
+                txtDate.setText(sdf.format(myCalendar.getTime()));
+            }
+        };
+
+        img = root.findViewById(R.id.imgCad2);
+        return root;
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.txtDate:
+                new DatePickerDialog(Objects.requireNonNull(getContext()), R.style.DialogTheme, date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                break;
+
+            case R.id.txtHour:
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(getContext(), R.style.DialogTheme, new TimePickerDialog.OnTimeSetListener() {
+                    @SuppressLint("SetTextI18n")
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        txtHour.setText(selectedHour + ":" + selectedMinute);
+                    }
+                }, hour, minute, true);//Yes 24 hour time
+                mTimePicker.setTitle("Select Time");
+                mTimePicker.show();
+                break;
+        }
+    }
+
+    public String validate (){
+
+        if(txtDate.getText().toString().equals("")){
+            return "Date is required! Please enter a date.";
+        }else if(txtHour.getText().toString().equals("")){
+            return "Hour is required! please enter a hour.\n";
+        }else if(edtPlace.getText().toString().equals("")) {
+            return "Place is mandatory! please insert a place.";
+        }
+        return "";
+    }
 }

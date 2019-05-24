@@ -5,14 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".fragment.Cad3Fragment">
 
-    <?xml version="1.0" encoding="utf-8"?>
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#EEEEEE"
-        tools:context=".activity.CreateChampion">
+        android:background="#EEEEEE">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -31,10 +29,11 @@
                     android:layout_margin="16dp">
 
                     <ImageView
-                        android:id="@+id/imgCadCarro"
+                        android:id="@+id/imgCad3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:alpha="0.8"
+                        android:alpha="0.9"
+                        android:scaleType="centerCrop"
                         android:background="@mipmap/sufer2"
                         android:foreground="?android:attr/selectableItemBackground" />
 
@@ -66,7 +65,8 @@
                         android:layout_height="50dp"
                         android:padding="5dp"
                         android:src="@drawable/ic_add_black_24dp"
-                        android:foreground="?android:attr/selectableItemBackground" />
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:id="@+id/plusJudge"/>
                     />
                 </LinearLayout>
 
@@ -128,12 +128,13 @@
                         android:layout_width="110dp"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:text="Sufers"
+                        android:text="Surfers"
                         android:layout_weight="1"
                         android:textColor="@color/title"
                         android:textSize="20sp" />
 
                     <ImageView
+                        android:id="@+id/plusSurfer"
                         android:layout_width="38dp"
                         android:layout_height="50dp"
                         android:padding="5dp"
