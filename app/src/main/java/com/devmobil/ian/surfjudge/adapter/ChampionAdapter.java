@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.devmobil.ian.surfjudge.R;
+import com.devmobil.ian.surfjudge.activity.ChampionActivity;
 import com.devmobil.ian.surfjudge.model.Champion;
 
 import java.util.List;
@@ -75,13 +76,13 @@ public class ChampionAdapter extends RecyclerView.Adapter<ChampionAdapter.Champi
                 @Override
                 public void onClick(View v) {
                     if (mData.size() > 0) {
-//                        Intent it = new Intent(context, ChampionActivity.class);
-//                        it.putExtra("id", mData.get(getLayoutPosition()).getId());
-//                        context.startActivity(it);
+                        Intent it = new Intent(context, ChampionActivity.class);
+                        it.putExtra("id", mData.get(getLayoutPosition()).getId());
+                        context.startActivity(it);
                     }
                 }
             });
-
+//
         }
     }
 }

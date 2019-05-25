@@ -137,7 +137,7 @@ public class Cad1Fragment extends Fragment implements View.OnClickListener {
                     File novo = createImageFile();
                     copyFile(new File(getRealPathFromURI(data.getData())), novo);
                     img.setImageURI(data.getData());
-                    uri = data.getData();
+                    uri = Uri.parse(novo.getAbsolutePath());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

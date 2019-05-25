@@ -103,7 +103,7 @@ public class CreateChampion extends AppCompatActivity  {
             champion.setWaves(Integer.valueOf(frag1.edtWaves.getText().toString()));
             champion.setCategory(frag1.spinner.getSelectedItem().toString());
             champion.setImage(frag1.uri.toString());
-            champion.setDate_time(frag2.txtHour.getText().toString() + frag2.txtDate.getText().toString());
+            champion.setDate_time(frag2.txtDate.getText().toString() + " - " + frag2.txtHour.getText().toString());
             champion.setPlace(frag2.edtPlace.getText().toString());
 //            champion.set(frag3.getText().toString());
             Champions champions = new Champions(this);
