@@ -104,7 +104,7 @@
                         android:layout_marginLeft="5dp"
                         android:gravity="top"
                         android:hint="Insert descricption here"
-                        android:inputType="text|textMultiLine"
+                        android:inputType="textCapSentences|text|textMultiLine"
                         android:lines="4"
                         android:maxLines="10"
                         android:minLines="4" />

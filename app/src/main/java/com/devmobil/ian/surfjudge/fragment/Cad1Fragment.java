@@ -154,8 +154,8 @@ public class Cad1Fragment extends Fragment implements View.OnClickListener {
             return "Description is required! please enter a description.\n";
         }else if(edtWaves.getText().toString().equals("")){
             return "Waves is mandatory! please insert a waves.";
-        }else if(uri == null){
-            return "Banner is required! please insert a banner.";
+//        }else if(uri == null){
+//            return "Banner is required! please insert a banner.";
         }
         return "";
     }

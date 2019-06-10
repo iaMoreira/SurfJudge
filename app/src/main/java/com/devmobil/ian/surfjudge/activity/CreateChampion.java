@@ -1,6 +1,7 @@
 package com.devmobil.ian.surfjudge.activity;
 
 import android.annotation.SuppressLint;
+import android.content.res.ColorStateList;
 import android.database.SQLException;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,10 +9,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,15 +23,20 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.devmobil.ian.surfjudge.R;
+import com.devmobil.ian.surfjudge.adapter.SurfersAdapter;
+import com.devmobil.ian.surfjudge.controller.ChampionSurfers;
 import com.devmobil.ian.surfjudge.controller.Champions;
+import com.devmobil.ian.surfjudge.dialog.CreateSurferDialog;
 import com.devmobil.ian.surfjudge.fragment.Cad1Fragment;
 import com.devmobil.ian.surfjudge.fragment.Cad2Fragment;
 import com.devmobil.ian.surfjudge.fragment.Cad3Fragment;
 import com.devmobil.ian.surfjudge.model.Champion;
+import com.devmobil.ian.surfjudge.model.ChampionSurfer;
+import com.devmobil.ian.surfjudge.model.Surfer;
 
 import java.util.Objects;
 
-public class CreateChampion extends AppCompatActivity  {
+public class CreateChampion extends AppCompatActivity implements CreateSurferDialog.NoticeDialogListener  {
     FragmentManager fm = getSupportFragmentManager();
     Cad1Fragment frag1 = new Cad1Fragment();
     Cad2Fragment frag2 = new Cad2Fragment();
@@ -69,7 +77,7 @@ public class CreateChampion extends AppCompatActivity  {
                     active = frag2;
                     if(frag1.uri != null)
                         frag2.img.setImageURI(frag1.uri);
-                }else if(active == frag2){
+                } else if(active == frag2){
                     aux = frag2.validate();
                     if(!aux.equals("")){
                         alert(aux);
@@ -102,6 +110,7 @@ public class CreateChampion extends AppCompatActivity  {
             champion.setDescription(frag1.edtDescription.getText().toString());
             champion.setWaves(Integer.valueOf(frag1.edtWaves.getText().toString()));
             champion.setCategory(frag1.spinner.getSelectedItem().toString());
+            if(frag1.uri != null)
             champion.setImage(frag1.uri.toString());
             champion.setDate_time(frag2.txtDate.getText().toString() + " - " + frag2.txtHour.getText().toString());
             champion.setPlace(frag2.edtPlace.getText().toString());
@@ -115,6 +124,14 @@ public class CreateChampion extends AppCompatActivity  {
                 champion.setId(id);
 
                 id = champions.update(champion);
+            }
+            ChampionSurfers championSurfers = new ChampionSurfers(this);
+            for(Surfer surfer : frag3.listSurfers){
+                ChampionSurfer championSurfer = new ChampionSurfer();
+                championSurfer.setColor(surfer.getColor());
+                championSurfer.setChampion_id(id);
+                championSurfer.setSurfer_id(surfer.getId());
+                championSurfers.insert(championSurfer);
             }
             finish();
 
@@ -147,7 +164,14 @@ public class CreateChampion extends AppCompatActivity  {
     }
 
     private void alert(String aviso) {
-        Toast.makeText(this, aviso, Toast.LENGTH_LONG);
+        Toast.makeText(this, aviso, Toast.LENGTH_LONG).show();
     }
-
+    public void onDialogPositiveClick(Surfer surfer) {
+        int[] rainbow = this.getResources().getIntArray(R.array.demo_colors);
+        surfer.setColor(rainbow[frag3.listSurfers.size()]);
+        frag3.listSurfers.add(surfer);
+        frag3.surfersAdapter = new SurfersAdapter(frag3.getContext(), frag3.listSurfers);
+        frag3.recyclerView.setLayoutManager(new LinearLayoutManager(frag3.getContext()));
+        frag3.recyclerView.setAdapter(frag3.surfersAdapter);
+    }
 }

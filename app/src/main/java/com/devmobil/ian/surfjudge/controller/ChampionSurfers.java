@@ -78,11 +78,11 @@ public class ChampionSurfers {
         }
     }
 
-    public ArrayList<ChampionSurfer> all() {
+    public ArrayList<ChampionSurfer> all(int id) {
         ArrayList<ChampionSurfer> championSurfers = new ArrayList<>();
         try {
             verifica();
-            String sql = "SELECT * FROM CHAMPION_SURFER ORDER BY NOME ASC";
+            String sql = "SELECT * FROM CHAMPION_SURFER WHERE CHAMPION_ID = "+ id;
             Cursor results = conection.rawQuery(sql, null);
             if (results.getCount() > 0) {
                 results.moveToFirst();
@@ -92,7 +92,7 @@ public class ChampionSurfers {
                     championSurfer.setId(results.getInt(results.getColumnIndexOrThrow("ID")));
                     championSurfer.setChampion_id(results.getInt(results.getColumnIndexOrThrow("CHAMPION_ID")));
                     championSurfer.setSurfer_id(results.getInt(results.getColumnIndexOrThrow("SURFER_ID")));
-                    championSurfer.setColor(results.getString(results.getColumnIndexOrThrow("COLOR")));
+                    championSurfer.setColor(results.getInt(results.getColumnIndexOrThrow("COLOR")));
                     championSurfers.add(championSurfer);
 
                 } while (results.moveToNext());
@@ -119,7 +119,7 @@ public class ChampionSurfers {
                 championSurfer.setId(results.getInt(results.getColumnIndexOrThrow("ID")));
                 championSurfer.setChampion_id(results.getInt(results.getColumnIndexOrThrow("CHAMPION_ID")));
                 championSurfer.setSurfer_id(results.getInt(results.getColumnIndexOrThrow("SURFER_ID")));
-                championSurfer.setColor(results.getString(results.getColumnIndexOrThrow("COLOR")));
+                championSurfer.setColor(results.getInt(results.getColumnIndexOrThrow("COLOR")));
                 results.close();
                 return championSurfer;
             } else

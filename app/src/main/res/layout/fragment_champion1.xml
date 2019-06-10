@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#EEEEEE"
     tools:context=".fragment.Champion1Fragment">
         <ScrollView
@@ -25,8 +26,6 @@
                     android:background="@drawable/item_adapter"
                     android:src="@mipmap/sufer2"
                     android:foreground="?android:attr/selectableItemBackground" />
-
-
 
 
                 <LinearLayout
@@ -249,166 +248,12 @@
                         android:textSize="20sp" />
 
                 </LinearLayout>
-
-                <LinearLayout
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/red"
-                    android:layout_marginBottom="2dp"
-                    android:background="@drawable/item_adapter"
-                    android:layout_marginHorizontal="5dp">
-
-                    <View
-                        android:layout_width="60dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:paddingLeft="25dp"
-                        android:paddingRight="16dp"
-                        android:layout_height="50dp"
-                        android:background="@color/white"
-                        android:orientation="vertical"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="Red"
-                            android:textColor="@color/black"
-                            android:layout_marginVertical="3dp"
-                            android:textSize="16sp" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="Alex Nelson"
-                            android:textColor="@color/title"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/grey"
-                    android:layout_marginBottom="2dp"
-                    android:background="@drawable/item_adapter"
-                    android:layout_marginHorizontal="5dp">
-
-                    <View
-                        android:layout_width="60dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:paddingLeft="25dp"
-                        android:paddingRight="16dp"
-                        android:layout_height="50dp"
-                        android:background="@color/white"
-                        android:orientation="vertical"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="Grey"
-                            android:textColor="@color/black"
-                            android:layout_marginVertical="3dp"
-                            android:textSize="16sp" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="Ian Santos"
-                            android:textColor="@color/title"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/blue"
-                    android:layout_marginBottom="2dp"
-                    android:background="@drawable/item_adapter"
-                    android:layout_marginHorizontal="5dp">
-
-                    <View
-                        android:layout_width="60dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:paddingLeft="25dp"
-                        android:paddingRight="16dp"
-                        android:layout_height="50dp"
-                        android:background="@color/white"
-                        android:orientation="vertical"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="Blue"
-                            android:textColor="@color/black"
-                            android:layout_marginVertical="3dp"
-                            android:textSize="16sp" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="Thiago Silva"
-                            android:textColor="@color/title"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/yellow"
-                    android:background="@drawable/item_adapter"
-                    android:layout_marginBottom="2dp"
-                    android:layout_marginHorizontal="5dp">
-
-                    <View
-                        android:layout_width="60dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center_vertical" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:paddingLeft="25dp"
-                        android:paddingRight="16dp"
-                        android:layout_height="50dp"
-                        android:background="@color/white"
-                        android:orientation="vertical"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="Yellow"
-                            android:textColor="@color/black"
-                            android:layout_marginVertical="3dp"
-                            android:textSize="16sp" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:text="Luan Tannus "
-                            android:textColor="@color/title"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-                </LinearLayout>
+                    android:layout_height="210dp"
+                    app:layout_constrainedHeight="true"
+                    tools:listitem="@layout/adapter_surfers"/>
 
             </LinearLayout>
         </ScrollView>

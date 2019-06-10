@@ -4,6 +4,15 @@ public class Surfer {
 
     private int id;
     private String name, country, date_birth;
+    private int color;
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }
 
     public Surfer() {
     }

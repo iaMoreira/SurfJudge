@@ -57,7 +57,7 @@ public class Database extends SQLiteOpenHelper {
                 " ID INTEGER, " +
                 " NAME TEXT NOT NULL, " +
                 " COUNTRY TEXT NOT NULL, " +
-                " DATE_BIRTH TEXT NOT NULL, " +
+                " DATE_BIRTH TEXT, " +
                 " PRIMARY KEY(ID) " +
                 ");";
 
@@ -69,7 +69,7 @@ public class Database extends SQLiteOpenHelper {
                 " ID INTEGER, " +
                 " CHAMPION_ID INTEGER NOT NULL, " +
                 " SURFER_ID INTEGER NOT NULL, " +
-                " COLOR TEXT NOT NULL, " +
+                " COLOR INTEGER NOT NULL, " +
                 " PRIMARY KEY(ID), " +
                 " FOREIGN KEY(SURFER_ID) REFERENCES SURFER(ID), " +
                 " FOREIGN KEY(CHAMPION_ID) REFERENCES CHAMPION(ID) " +

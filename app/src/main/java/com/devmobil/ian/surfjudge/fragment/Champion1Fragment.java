@@ -5,6 +5,8 @@ import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +15,14 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.devmobil.ian.surfjudge.R;
+import com.devmobil.ian.surfjudge.adapter.SurfersAdapter;
+import com.devmobil.ian.surfjudge.controller.ChampionSurfers;
+import com.devmobil.ian.surfjudge.controller.Surfers;
 import com.devmobil.ian.surfjudge.model.Champion;
+import com.devmobil.ian.surfjudge.model.ChampionSurfer;
+import com.devmobil.ian.surfjudge.model.Surfer;
+
+import java.util.ArrayList;
 
 
 /**
@@ -29,7 +38,10 @@ public class Champion1Fragment extends Fragment {
     private TextView txtCategory;
     private TextView txtWaves;
     private TextView txtPlace;
-
+    public RecyclerView recyclerView;
+    public ArrayList<Surfer> listSurfers = new ArrayList<>();
+    public SurfersAdapter surfersAdapter;
+    Surfer surfer;
     public Champion1Fragment(Champion c) {
         champion = c;
     }
@@ -53,6 +65,17 @@ public class Champion1Fragment extends Fragment {
         txtCategory.setText(champion.getCategory());
         txtWaves.setText(String.valueOf(champion.getWaves()));
         txtPlace.setText(champion.getPlace());
+        Surfers aux = new Surfers(this.getContext());
+        ChampionSurfers championSurfers = new ChampionSurfers(getContext());
+        for(ChampionSurfer championSurfer : championSurfers.all(champion.getId())){
+            Surfer surfer = aux.find(championSurfer.getSurfer_id());
+            surfer.setColor(championSurfer.getColor());
+            listSurfers.add(surfer);
+        }
+        recyclerView = root.findViewById(R.id.recyclerView);
+        surfersAdapter = new SurfersAdapter(getActivity(), listSurfers);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(surfersAdapter);
 
         return root;
     }

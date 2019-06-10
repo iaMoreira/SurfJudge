@@ -10,19 +10,24 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.devmobil.ian.surfjudge.R;
+import com.devmobil.ian.surfjudge.adapter.LineGridAdapter;
 import com.devmobil.ian.surfjudge.controller.Champions;
 import com.devmobil.ian.surfjudge.fragment.Champion1Fragment;
 import com.devmobil.ian.surfjudge.fragment.Champion2Fragment;
 import com.devmobil.ian.surfjudge.fragment.Champion3Fragment;
 import com.devmobil.ian.surfjudge.model.Champion;
 
-public class ChampionActivity extends AppCompatActivity {
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+
+public class ChampionActivity extends AppCompatActivity implements LineGridAdapter.onItemChangeListener {
     FragmentManager fm = getSupportFragmentManager();
     Champion1Fragment frag1;
     Champion2Fragment frag2;
@@ -45,7 +50,7 @@ public class ChampionActivity extends AppCompatActivity {
             id = bundle.getInt("id");
             champion = champions.find(id);
             frag1 = new Champion1Fragment(champion);
-            frag2 = new Champion2Fragment(champion);
+            frag2 = new Champion2Fragment(champion, this);
             frag3 = new Champion3Fragment();
             active = frag1;
 
@@ -133,6 +138,44 @@ public class ChampionActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+    }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
 
+        if( keyCode== KeyEvent.KEYCODE_BACK)
+        {
+
+            if (getFragmentManager().getBackStackEntryCount() > 0) {
+                getFragmentManager().popBackStack();
+            } else {
+                super.onBackPressed();
+            }
+        }
+
+        return super.onKeyDown(keyCode, event);
+
+    }
+    @Override
+    public void onTextChanged(int col, int position, String s) {
+        Log.d("onTextChanged", "col= "+ col + " pos= "+ position+ " "+ s);
+        Double aux = 0.0;
+        int ind = 0;
+        for(ArrayList<Double> arrayList : frag2.mChampionAdapter.mData){
+            if(arrayList.get(0) > 0.0) {
+                aux += arrayList.get(0);
+                ind++;
+            }
+        }
+        aux /= ind;
+        DecimalFormat decimalFormat = new DecimalFormat("0.##");
+        frag2.textView.setText("Total: "+ decimalFormat.format(aux));
+    }
 }

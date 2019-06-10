@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.devmobil.ian.surfjudge.R;
 import com.devmobil.ian.surfjudge.adapter.ChampionAdapter;
@@ -27,9 +30,14 @@ public class Champion2Fragment extends Fragment {
 
     private Champion champion;
     private RecyclerView recyclerView;
+    private LineGridAdapter.onItemChangeListener textWatcher;
+    public LineGridAdapter mChampionAdapter;
+    public TextView textView;
+
     @SuppressLint("ValidFragment")
-    public Champion2Fragment(Champion c) {
+    public Champion2Fragment(Champion c, LineGridAdapter.onItemChangeListener textWatcher) {
         champion = c;
+        this.textWatcher = textWatcher;
     }
 
 
@@ -37,14 +45,15 @@ public class Champion2Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root =inflater.inflate(R.layout.fragment_champion2, container, false);
+        textView = root.findViewById(R.id.txtOne);
         recyclerView = root.findViewById(R.id.recyclerView);
-        List<Champion> array = new  ArrayList<>();
+        List<ArrayList<Double>> array = new  ArrayList<>();
         for (int i = 0; i < champion.getWaves(); i++) {
-            array.add(new Champion());
+            array.add(new ArrayList<Double>());
         }
-        LineGridAdapter mChampionAdapter = new LineGridAdapter(getContext(),array );
+        mChampionAdapter = new LineGridAdapter(getContext(),array, textView.getWidth());
         mChampionAdapter.setHasStableIds(true);
-
+        mChampionAdapter.setOnItemClickListener( textWatcher );
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(mChampionAdapter);
 

@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spanned;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,17 +21,26 @@ import com.devmobil.ian.surfjudge.R;
 import com.devmobil.ian.surfjudge.activity.ChampionActivity;
 import com.devmobil.ian.surfjudge.model.Champion;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LineGridAdapter extends RecyclerView.Adapter<LineGridAdapter.ChampionHolder> {
     @NonNull
 
-    private List<Champion> mData;
+    public List< ArrayList<Double>> mData;
     private LayoutInflater mInflater;
-
-    public LineGridAdapter(Context context, @NonNull List<Champion> data) {
+    public onItemChangeListener mItemChangeListener;
+    private int width;
+    public void setOnItemClickListener(onItemChangeListener mItemClickListener) {
+        this.mItemChangeListener = mItemClickListener;
+    }
+    public interface onItemChangeListener {
+        void onTextChanged(int col, int position, String s);
+    }
+    public LineGridAdapter(Context context, @NonNull List< ArrayList<Double>> data , int width) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+        this.width = width;
     }
 
     @NonNull
@@ -40,9 +51,95 @@ public class LineGridAdapter extends RecyclerView.Adapter<LineGridAdapter.Champi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ChampionHolder holder, int position) {
-        Champion champion = mData.get(position);
+    public void onBindViewHolder(@NonNull ChampionHolder holder, @SuppressLint("RecyclerView") final int position) {
+       // Champion champion = mData.get(position);
         holder.txtPosition.setText(String.valueOf(position+1));
+        ArrayList<Double> arrayList = new ArrayList<>(4);
+        arrayList.add(0.0);
+        arrayList.add(0.0);
+        arrayList.add(0.0);
+        arrayList.add(0.0);
+        mData.set(position,arrayList);
+        holder.edtColumn1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().length()==0){
+                    s= "0";
+                }
+                mData.get(position).set(0, Double.valueOf(s.toString()));
+                if (mItemChangeListener != null) {
+                    mItemChangeListener.onTextChanged(0, position, s.toString());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        holder.edtColumn2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mData.get(position).set(1, Double.valueOf(s.toString()));
+                if (mItemChangeListener != null) {
+                    mItemChangeListener.onTextChanged(1, position, s.toString());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        holder.edtColumn3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mData.get(position).set(2, Double.valueOf(s.toString()));
+                if (mItemChangeListener != null) {
+                    mItemChangeListener.onTextChanged(2, position, s.toString());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        holder.edtColumn4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mData.get(position).set(3, Double.valueOf(s.toString()));
+                if (mItemChangeListener != null) {
+                    mItemChangeListener.onTextChanged(3, position, s.toString());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
     // total number of rows
@@ -59,10 +156,10 @@ public class LineGridAdapter extends RecyclerView.Adapter<LineGridAdapter.Champi
 
     class ChampionHolder extends RecyclerView.ViewHolder {
         TextView txtPosition;
-        EditText edtColumn1;
-        EditText edtColumn2;
-        EditText edtColumn3;
-        EditText edtColumn4;
+        public EditText edtColumn1;
+        public EditText edtColumn2;
+        public EditText edtColumn3;
+        public EditText edtColumn4;
 
 
         ChampionHolder(View itemView, final Context context) {
@@ -72,17 +169,19 @@ public class LineGridAdapter extends RecyclerView.Adapter<LineGridAdapter.Champi
             edtColumn2 = itemView.findViewById(R.id.edtColumn2);
             edtColumn3 = itemView.findViewById(R.id.edtColumn3);
             edtColumn4 = itemView.findViewById(R.id.edtColumn4);
-            edtColumn1.setMaxWidth(edtColumn1.getWidth());
-            edtColumn2.setMaxWidth(edtColumn1.getWidth());
-            edtColumn3.setMaxWidth(edtColumn1.getWidth());
-            edtColumn4.setMaxWidth(edtColumn1.getWidth());
+            edtColumn1.setMaxWidth(width);
+            edtColumn2.setMaxWidth(width);
+            edtColumn3.setMaxWidth(width);
+            edtColumn4.setMaxWidth(width);
             edtColumn1.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f, 10.0f)});
             edtColumn2.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f, 10.0f)});
             edtColumn3.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f, 10.0f)});
             edtColumn4.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f, 10.0f)});
 
+
         }
     }
+
     public class CustomRangeInputFilter implements InputFilter {
         private double minValue;
         private double maxValue;
