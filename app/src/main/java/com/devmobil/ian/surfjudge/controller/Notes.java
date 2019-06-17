@@ -90,7 +90,7 @@ public class Notes {
                 do {
                     Note note = new Note();
                     note.setId(results.getInt(results.getColumnIndexOrThrow("ID")));
-                    note.setValue(results.getFloat(results.getColumnIndexOrThrow("VALUE")));
+                    note.setValue(results.getDouble(results.getColumnIndexOrThrow("VALUE")));
                     note.setChampion_surver_id(results.getInt(results.getColumnIndexOrThrow("CHAMPION_SURFER_ID")));
                     note.setWave(results.getInt(results.getColumnIndexOrThrow("WAVE")));
                     notes.add(note);
@@ -107,7 +107,30 @@ public class Notes {
         }
     }
 
-    public Note find(int id) {
+
+    public ArrayList<Double> allNotes(int id) {
+        ArrayList<Double> notes = new ArrayList<>();
+        try {
+            verifica();
+            String sql = "SELECT ID, VALUE FROM NOTE WHERE CHAMPION_SURFER_ID  = " + id + " ORDER BY ID ASC";
+            Cursor results = conection.rawQuery(sql, null);
+            if (results.getCount() > 0) {
+                results.moveToFirst();
+                do {
+                    notes.add(results.getDouble(results.getColumnIndexOrThrow("VALUE")));
+                } while (results.moveToNext());
+                results.close();
+                return notes;
+            } else
+                return notes;
+        } catch (SQLException ex) {
+            return notes;
+        } catch (NullPointerException ex) {
+            return notes;
+        }
+    }
+
+    public Note findj(int id) {
         Note note = new Note();
         try {
             verifica();
@@ -117,7 +140,31 @@ public class Notes {
                 results.moveToFirst();
 
                 note.setId(results.getInt(results.getColumnIndexOrThrow("ID")));
-                note.setValue(results.getFloat(results.getColumnIndexOrThrow("VALUE")));
+                note.setValue(results.getDouble(results.getColumnIndexOrThrow("VALUE")));
+                note.setChampion_surver_id(results.getInt(results.getColumnIndexOrThrow("CHAMPION_SURFER_ID")));
+                note.setWave(results.getInt(results.getColumnIndexOrThrow("WAVE")));
+                results.close();
+                return note;
+            } else
+                return note;
+        } catch (SQLException ex) {
+            return note;
+        } catch (NullPointerException ex) {
+            return note;
+        }
+    }
+
+    public Note find(int CHAMPION_SURFER_ID, int WAVE) {
+        Note note = new Note();
+        try {
+            verifica();
+            String sql = "SELECT * FROM NOTE WHERE CHAMPION_SURFER_ID = " + String.valueOf(CHAMPION_SURFER_ID) + " AND WAVE = "+ String.valueOf(WAVE);
+            Cursor results = conection.rawQuery(sql, null);
+            if (results.getCount() > 0) {
+                results.moveToFirst();
+
+                note.setId(results.getInt(results.getColumnIndexOrThrow("ID")));
+                note.setValue(results.getDouble(results.getColumnIndexOrThrow("VALUE")));
                 note.setChampion_surver_id(results.getInt(results.getColumnIndexOrThrow("CHAMPION_SURFER_ID")));
                 note.setWave(results.getInt(results.getColumnIndexOrThrow("WAVE")));
                 results.close();

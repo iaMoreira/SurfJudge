@@ -23,12 +23,24 @@ public class Database extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        if(newVersion == 2){
+            db.delete("CHAMPION", null, null);
+            db.delete("SURFER", null, null);
+            db.delete("CHAMPION_SURFER", null, null);
+            db.delete("NOTE", null, null);
+
+            db.execSQL(Database.createChampion());
+            db.execSQL(Database.createSurfer());
+            db.execSQL(Database.createChampionSurfer());
+            db.execSQL(Database.createNote());
+        }
     }
 
     @Override
     public void onOpen(SQLiteDatabase db) {
         super.onOpen(db);
         if (!db.isReadOnly()) {
+
             // Enable foreign key constraints
             db.execSQL("PRAGMA foreign_keys=ON;");
             //(OR)
@@ -36,7 +48,7 @@ public class Database extends SQLiteOpenHelper {
         }
     }
 
-    private String createChampion() {
+    public static  String createChampion() {
         String sql = "CREATE TABLE CHAMPION ( " +
                 " ID INTEGER , " +
                 " TITLE TEXT NOT NULL, " +
@@ -52,7 +64,7 @@ public class Database extends SQLiteOpenHelper {
         return sql;
     }
 
-    private String createSurfer() {
+    public static  String createSurfer() {
         String sql = "CREATE TABLE SURFER ( " +
                 " ID INTEGER, " +
                 " NAME TEXT NOT NULL, " +
@@ -64,7 +76,7 @@ public class Database extends SQLiteOpenHelper {
         return sql;
     }
 
-    private String createChampionSurfer() {
+    public static String createChampionSurfer() {
         String sql = "CREATE TABLE CHAMPION_SURFER ( " +
                 " ID INTEGER, " +
                 " CHAMPION_ID INTEGER NOT NULL, " +
@@ -78,7 +90,7 @@ public class Database extends SQLiteOpenHelper {
         return sql;
     }
 
-    private String createNote() {
+    public static  String createNote() {
         String sql = "CREATE TABLE NOTE ( " +
                 " ID INTEGER, " +
                 " VALUE NUMERIC NOT NULL, " +

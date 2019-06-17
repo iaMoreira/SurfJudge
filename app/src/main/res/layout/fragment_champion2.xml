@@ -13,23 +13,26 @@
            android:layout_width="50dp"
            android:layout_height="80dp"
            android:text="waves"
+           android:background="@drawable/item_table"
            android:textStyle="bold"
            android:textSize="16sp"
            android:gravity="center"
            android:textColor="@color/title"
            />
+
        <LinearLayout
-           android:id="@+id/linearOne"
-           android:layout_width="wrap_content"
+           android:id="@+id/linear1"
+           android:layout_width="match_parent"
            android:layout_height="80dp"
            android:layout_weight="1"
+           android:visibility="gone"
            android:background="@color/red"
            android:orientation="vertical">
 
            <TextView
+               android:id="@+id/txtPosition1"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:background="@color/red"
                android:gravity="center"
                android:layout_gravity="center"
                android:text="1°"
@@ -49,6 +52,7 @@
                android:textColor="@color/white"
                />
            <TextView
+               android:id="@+id/txtNeeds1"
                android:layout_gravity="center"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
@@ -63,13 +67,16 @@
        </LinearLayout>
 
        <LinearLayout
-           android:layout_width="wrap_content"
+           android:id="@+id/linear2"
+           android:layout_width="match_parent"
            android:layout_height="80dp"
            android:layout_weight="1"
+           android:visibility="gone"
            android:background="@color/grey_500"
            android:orientation="vertical">
 
            <TextView
+               android:id="@+id/txtPosition2"
                android:layout_gravity="center"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
@@ -84,6 +91,7 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="Total:"
+               android:id="@+id/txtTwo"
                android:layout_weight="1"
                android:textStyle="italic"
                android:textSize="12sp"
@@ -91,10 +99,11 @@
                android:textColor="@color/white"
                />
            <TextView
+               android:id="@+id/txtNeeds2"
                android:layout_gravity="center"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:text="Need:"
+               android:text="Needs:"
                android:layout_weight="1"
                android:textStyle="italic"
                android:textSize="12sp"
@@ -104,14 +113,16 @@
 
        </LinearLayout>
        <LinearLayout
-           android:layout_width="wrap_content"
+           android:id="@+id/linear3"
+           android:layout_width="match_parent"
            android:layout_height="80dp"
            android:layout_weight="1"
+           android:visibility="gone"
            android:background="@color/blue"
            android:orientation="vertical">
 
            <TextView
-
+               android:id="@+id/txtPosition3"
                android:layout_gravity="center"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
@@ -126,6 +137,7 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="Total:"
+               android:id="@+id/txtThree"
                android:layout_weight="1"
                android:textStyle="italic"
                android:textSize="12sp"
@@ -133,10 +145,11 @@
                android:textColor="@color/white"
                />
            <TextView
+               android:id="@+id/txtNeeds3"
                android:layout_gravity="center"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:text="Need:"
+               android:text="Needs:"
                android:layout_weight="1"
                android:textStyle="italic"
                android:textSize="12sp"
@@ -146,13 +159,16 @@
 
        </LinearLayout>
        <LinearLayout
-           android:layout_width="wrap_content"
+           android:id="@+id/linear4"
+           android:layout_width="match_parent"
            android:layout_height="80dp"
            android:layout_weight="1"
+           android:visibility="gone"
            android:background="@color/yellow"
            android:orientation="vertical">
 
            <TextView
+               android:id="@+id/txtPosition4"
                android:layout_gravity="center"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
@@ -167,6 +183,7 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="Total:"
+               android:id="@+id/txtFour"
                android:layout_weight="1"
                android:textStyle="italic"
                android:textSize="12sp"
@@ -174,10 +191,11 @@
                android:textColor="@color/white"
                />
            <TextView
+               android:id="@+id/txtNeeds4"
                android:layout_gravity="center"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:text="Need:"
+               android:text="Needs:"
                android:layout_weight="1"
                android:textStyle="italic"
                android:textSize="12sp"

@@ -26,12 +26,14 @@ import com.devmobil.ian.surfjudge.R;
 import com.devmobil.ian.surfjudge.adapter.SurfersAdapter;
 import com.devmobil.ian.surfjudge.controller.ChampionSurfers;
 import com.devmobil.ian.surfjudge.controller.Champions;
+import com.devmobil.ian.surfjudge.controller.Notes;
 import com.devmobil.ian.surfjudge.dialog.CreateSurferDialog;
 import com.devmobil.ian.surfjudge.fragment.Cad1Fragment;
 import com.devmobil.ian.surfjudge.fragment.Cad2Fragment;
 import com.devmobil.ian.surfjudge.fragment.Cad3Fragment;
 import com.devmobil.ian.surfjudge.model.Champion;
 import com.devmobil.ian.surfjudge.model.ChampionSurfer;
+import com.devmobil.ian.surfjudge.model.Note;
 import com.devmobil.ian.surfjudge.model.Surfer;
 
 import java.util.Objects;
@@ -104,7 +106,7 @@ public class CreateChampion extends AppCompatActivity implements CreateSurferDia
 
     private void insert() {
         try {
-
+            Notes notes = new Notes(this);
             champion = new Champion();
             champion.setTitle(frag1.edtTitle.getText().toString());
             champion.setDescription(frag1.edtDescription.getText().toString());
@@ -131,7 +133,14 @@ public class CreateChampion extends AppCompatActivity implements CreateSurferDia
                 championSurfer.setColor(surfer.getColor());
                 championSurfer.setChampion_id(id);
                 championSurfer.setSurfer_id(surfer.getId());
-                championSurfers.insert(championSurfer);
+                int id = (int) championSurfers.insert(championSurfer);
+                for(int i = 0; i < champion.getWaves(); i++){
+                    Note note = new Note();
+                    note.setValue(-1.0);
+                    note.setWave(i+1);
+                    note.setChampion_surver_id(id);
+                    notes.insert(note);
+                }
             }
             finish();
 

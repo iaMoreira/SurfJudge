@@ -2,7 +2,7 @@ package com.devmobil.ian.surfjudge.model;
 
 public class Note {
     private int id, wave, champion_surver_id;
-    private float value;
+    private Double value;
 
     public Note() {
     }
@@ -23,11 +23,11 @@ public class Note {
         this.champion_surver_id = champion_surver_id;
     }
 
-    public float getValue() {
+    public Double getValue() {
         return value;
     }
 
-    public void setValue(float value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 

@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity
         try {
             Database database = new Database(context);
             connection = database.getWritableDatabase();
+
         } catch (SQLException ex) {
             AlertDialog.Builder dlg = new AlertDialog.Builder(context);
             dlg.setTitle("Erro");

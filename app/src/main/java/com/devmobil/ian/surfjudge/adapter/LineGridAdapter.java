@@ -55,11 +55,45 @@ public class LineGridAdapter extends RecyclerView.Adapter<LineGridAdapter.Champi
        // Champion champion = mData.get(position);
         holder.txtPosition.setText(String.valueOf(position+1));
         ArrayList<Double> arrayList = new ArrayList<>(4);
-        arrayList.add(0.0);
-        arrayList.add(0.0);
-        arrayList.add(0.0);
-        arrayList.add(0.0);
-        mData.set(position,arrayList);
+        if(mData.get(position).size() > 0) {
+            arrayList.add(mData.get(position).get(0));
+            holder.edtColumn1.setVisibility(View.VISIBLE);
+            if(mData.get(position).get(0) == -1.0){
+                holder.edtColumn1.setText("");
+            }else{
+                holder.edtColumn1.setText(String.valueOf(mData.get(position).get(0)));
+            }
+        }
+        if(mData.get(position).size() > 1){
+            arrayList.add(mData.get(position).get(1));
+            holder.edtColumn2.setVisibility(View.VISIBLE);
+            if(mData.get(position).get(1) == -1.0){
+                holder.edtColumn2.setText("");
+            }else{
+                holder.edtColumn2.setText(String.valueOf(mData.get(position).get(1)));
+            }
+        }
+
+        if(mData.get(position).size() > 2){
+            arrayList.add(mData.get(position).get(2));
+            holder.edtColumn3.setVisibility(View.VISIBLE);
+            if(mData.get(position).get(2) == -1.0){
+                holder.edtColumn3.setText("");
+            }else{
+                holder.edtColumn3.setText(String.valueOf(mData.get(position).get(2)));
+            }
+        }
+
+        if(mData.get(position).size() > 3){
+            arrayList.add(mData.get(position).get(3));
+            holder.edtColumn4.setVisibility(View.VISIBLE);
+            if(mData.get(position).get(3) == -1.0){
+                holder.edtColumn4.setText("");
+            }else{
+                holder.edtColumn4.setText(String.valueOf(mData.get(position).get(3)));
+            }
+        }
+        mData.set(position, arrayList);
         holder.edtColumn1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -68,7 +102,7 @@ public class LineGridAdapter extends RecyclerView.Adapter<LineGridAdapter.Champi
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.toString().length()==0){
+                if(s.toString().isEmpty()){
                     s= "0";
                 }
                 mData.get(position).set(0, Double.valueOf(s.toString()));
@@ -90,6 +124,9 @@ public class LineGridAdapter extends RecyclerView.Adapter<LineGridAdapter.Champi
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().isEmpty()){
+                    s= "0";
+                }
                 mData.get(position).set(1, Double.valueOf(s.toString()));
                 if (mItemChangeListener != null) {
                     mItemChangeListener.onTextChanged(1, position, s.toString());
@@ -109,6 +146,9 @@ public class LineGridAdapter extends RecyclerView.Adapter<LineGridAdapter.Champi
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().isEmpty()){
+                    s= "0";
+                }
                 mData.get(position).set(2, Double.valueOf(s.toString()));
                 if (mItemChangeListener != null) {
                     mItemChangeListener.onTextChanged(2, position, s.toString());
@@ -128,6 +168,9 @@ public class LineGridAdapter extends RecyclerView.Adapter<LineGridAdapter.Champi
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().isEmpty()){
+                    s= "0";
+                }
                 mData.get(position).set(3, Double.valueOf(s.toString()));
                 if (mItemChangeListener != null) {
                     mItemChangeListener.onTextChanged(3, position, s.toString());
