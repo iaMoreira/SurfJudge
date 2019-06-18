@@ -2,7 +2,7 @@ package com.devmobil.ian.surfjudge.adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.FragmentManager;
+import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
@@ -11,6 +11,7 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -87,7 +88,9 @@ public class SurfersAdapter extends RecyclerView.Adapter<SurfersAdapter.Champion
                 @Override
                 public void onClick(View view) {
 
-                    FragmentManager manager = ((Activity) context).getFragmentManager();
+//                    FragmentManager manager = ((Activity) context).getFragmentManager();
+                    FragmentManager manager = ((AppCompatActivity)context).getSupportFragmentManager();
+
                     new SpectrumDialog.Builder(mInflater.getContext())
                             .setColors(R.array.demo_colors)
                             .setSelectedColorRes(R.color.red)
@@ -99,14 +102,18 @@ public class SurfersAdapter extends RecyclerView.Adapter<SurfersAdapter.Champion
                                 public void onColorSelected(boolean positiveResult, @ColorInt int color) {
                                     if (positiveResult) {
 //                                        colors = color;
-//                                        Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.drawable.radius);
+//                                        Drawable drawable = ContextCompat.getDrawable(context.getApplicationContext(), R.drawable.item_adapter);
 //                                        assert drawable != null;
 //                                        drawable.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
-//                                        imgCor.setBackground(drawable);
+//                                        linearColor.setBackground(drawable);
+                                        ViewCompat.setBackgroundTintList(
+                                                linearColor,
+                                                ColorStateList.valueOf(color));
+                                        mData.get(getLayoutPosition()).setColor(color);
                                     }
                                 }
-                            });
-//                            .build().show(, "Selecione uma cor");
+                            })
+                            .build().show(manager, "Selecione uma cor");
 
 
                 }

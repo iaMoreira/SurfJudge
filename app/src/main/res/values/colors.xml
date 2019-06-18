@@ -22,6 +22,7 @@
     <color name="green">#FF4CAF50</color>
     <color name="grey">#9E9E9E</color>
     <color name="blue">#3F51B5</color>
+    <color name="text">#EEEEEE</color>
 
     <array name="demo_colors" tools:ignore="MissingDefaultResource">
         <item>#3F51B5</item>
@@ -37,12 +38,12 @@
         <item>#009688</item>
         <item>#4CAF50</item>
         <item>#8BC34A</item>
-        <item>#CDDC39</item>
         <item>#FFC107</item>
         <item>#FF9800</item>
         <item>#FF5722</item>
         <item>#795548</item>
         <item>#607D8B</item>
         <item>#FFFFFF</item>
+        <item>#212121</item>
     </array>
 </resources>

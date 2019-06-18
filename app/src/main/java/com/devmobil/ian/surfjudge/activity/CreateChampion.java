@@ -128,7 +128,7 @@ public class CreateChampion extends AppCompatActivity implements CreateSurferDia
                 id = champions.update(champion);
             }
             ChampionSurfers championSurfers = new ChampionSurfers(this);
-            for(Surfer surfer : frag3.listSurfers){
+            for(Surfer surfer : frag3.surfersAdapter.mData){
                 ChampionSurfer championSurfer = new ChampionSurfer();
                 championSurfer.setColor(surfer.getColor());
                 championSurfer.setChampion_id(id);

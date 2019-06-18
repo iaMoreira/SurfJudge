@@ -51,6 +51,12 @@ public class Champion2Fragment extends Fragment {
     public TextView txtNeeds2;
     public TextView txtNeeds3;
     public TextView txtNeeds4;
+
+    public TextView txtName1;
+    public TextView txtName2;
+    public TextView txtName3;
+    public TextView txtName4;
+
     public ChampionSurfers championSurfers;
     public ArrayList<Double> listNote1;
     public ArrayList<Double> listNote2;
@@ -107,6 +113,14 @@ public class Champion2Fragment extends Fragment {
         txtNeeds2 = root.findViewById(R.id.txtNeeds2);
         txtNeeds3 = root.findViewById(R.id.txtNeeds3);
         txtNeeds4 = root.findViewById(R.id.txtNeeds4);
+
+        txtName1 = root.findViewById(R.id.txtName1);
+        txtName2 = root.findViewById(R.id.txtName2);
+        txtName3 = root.findViewById(R.id.txtName3);
+        txtName4 = root.findViewById(R.id.txtName4);
+
+
+
         Notes notes = new Notes(getContext());
         Surfers aux = new Surfers(getContext());
         championSurfers = new ChampionSurfers(getContext());
@@ -117,18 +131,22 @@ public class Champion2Fragment extends Fragment {
             if(listSurfers.size() == 0){
                 linearLayout1.setBackgroundColor(championSurfer.getColor());
                 listNote1 = notes.allNotes(championSurfer.getId());
+                txtName1.setText(aux.find(championSurfer.getSurfer_id()).getName());
                 linearLayout1.setVisibility(View.VISIBLE);
             }else if(listSurfers.size() == 1){
                 linearLayout2.setBackgroundColor(championSurfer.getColor());
                 linearLayout2.setVisibility(View.VISIBLE);
+                txtName2.setText(aux.find(championSurfer.getSurfer_id()).getName());
                 listNote2 = notes.allNotes(championSurfer.getId());
             }else if(listSurfers.size() == 2){
                 linearLayout3.setBackgroundColor(championSurfer.getColor());
                 linearLayout3.setVisibility(View.VISIBLE);
+                txtName3.setText(aux.find(championSurfer.getSurfer_id()).getName());
                 listNote3 = notes.allNotes(championSurfer.getId());
             }else if(listSurfers.size() == 3){
                 linearLayout4.setBackgroundColor(championSurfer.getColor());
                 linearLayout4.setVisibility(View.VISIBLE);
+                txtName4.setText(aux.find(championSurfer.getSurfer_id()).getName());
                 listNote4 = notes.allNotes(championSurfer.getId());
             }
             listSurfers.add(surfer);

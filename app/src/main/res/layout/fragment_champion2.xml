@@ -36,7 +36,7 @@
                android:gravity="center"
                android:layout_gravity="center"
                android:text="1°"
-               android:textColor="@color/white"
+               android:textColor="@color/text"
                android:textSize="20sp"
                android:textStyle="bold" />
            <TextView
@@ -49,7 +49,7 @@
                android:textStyle="italic"
                android:textSize="12sp"
                android:gravity="center_horizontal"
-               android:textColor="@color/white"
+               android:textColor="@color/text"
                />
            <TextView
                android:id="@+id/txtNeeds1"
@@ -61,7 +61,21 @@
                android:textStyle="italic"
                android:textSize="12sp"
                android:gravity="center_horizontal"
-               android:textColor="@color/white"
+               android:textColor="@color/text"
+               />
+           <TextView
+               android:id="@+id/txtName1"
+               android:layout_gravity="center"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text=""
+               android:maxLines="1"
+               android:paddingHorizontal="1dp"
+               android:layout_weight="1"
+               android:textStyle="italic"
+               android:textSize="10sp"
+               android:gravity="center_horizontal"
+               android:textColor="@color/black"
                />
 
        </LinearLayout>
@@ -75,6 +89,7 @@
            android:background="@color/grey_500"
            android:orientation="vertical">
 
+
            <TextView
                android:id="@+id/txtPosition2"
                android:layout_gravity="center"
@@ -84,7 +99,7 @@
                android:textStyle="bold"
                android:textSize="20sp"
                android:gravity="center"
-               android:textColor="@color/white"
+               android:textColor="@color/text"
                />
            <TextView
                android:layout_gravity="center"
@@ -96,7 +111,7 @@
                android:textStyle="italic"
                android:textSize="12sp"
                android:gravity="center_horizontal"
-               android:textColor="@color/white"
+               android:textColor="@color/text"
                />
            <TextView
                android:id="@+id/txtNeeds2"
@@ -108,7 +123,21 @@
                android:textStyle="italic"
                android:textSize="12sp"
                android:gravity="center_horizontal"
-               android:textColor="@color/white"
+               android:textColor="@color/text"
+               />
+           <TextView
+               android:layout_gravity="center"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text=""
+               android:maxLines="1"
+               android:paddingHorizontal="1dp"
+               android:id="@+id/txtName2"
+               android:layout_weight="1"
+               android:textStyle="italic"
+               android:textSize="10sp"
+               android:gravity="center_horizontal"
+               android:textColor="@color/black"
                />
 
        </LinearLayout>
@@ -130,7 +159,7 @@
                android:textStyle="bold"
                android:textSize="20sp"
                android:gravity="center"
-               android:textColor="@color/white"
+               android:textColor="@color/text"
                />
            <TextView
                android:layout_gravity="center"
@@ -142,7 +171,7 @@
                android:textStyle="italic"
                android:textSize="12sp"
                android:gravity="center_horizontal"
-               android:textColor="@color/white"
+               android:textColor="@color/text"
                />
            <TextView
                android:id="@+id/txtNeeds3"
@@ -154,7 +183,21 @@
                android:textStyle="italic"
                android:textSize="12sp"
                android:gravity="center_horizontal"
-               android:textColor="@color/white"
+               android:textColor="@color/text"
+               />
+           <TextView
+               android:id="@+id/txtName3"
+               android:layout_gravity="center"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text=""
+               android:maxLines="1"
+               android:paddingHorizontal="1dp"
+               android:layout_weight="1"
+               android:textStyle="italic"
+               android:textSize="10sp"
+               android:gravity="center_horizontal"
+               android:textColor="@color/black"
                />
 
        </LinearLayout>
@@ -176,7 +219,7 @@
                android:textStyle="bold"
                android:textSize="20sp"
                android:gravity="center"
-               android:textColor="@color/white"
+               android:textColor="@color/text"
                />
            <TextView
                android:layout_gravity="center"
@@ -188,7 +231,7 @@
                android:textStyle="italic"
                android:textSize="12sp"
                android:gravity="center_horizontal"
-               android:textColor="@color/white"
+               android:textColor="@color/text"
                />
            <TextView
                android:id="@+id/txtNeeds4"
@@ -200,7 +243,21 @@
                android:textStyle="italic"
                android:textSize="12sp"
                android:gravity="center_horizontal"
-               android:textColor="@color/white"
+               android:textColor="@color/text"
+               />
+           <TextView
+               android:id="@+id/txtName4"
+               android:layout_gravity="center"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text=""
+               android:maxLines="1"
+               android:paddingHorizontal="1dp"
+               android:layout_weight="1"
+               android:textStyle="italic"
+               android:textSize="10sp"
+               android:gravity="center_horizontal"
+               android:textColor="@color/black"
                />
 
        </LinearLayout>
